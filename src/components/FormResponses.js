@@ -20,7 +20,7 @@ const FormResponses = () => {
     const fetchResponses = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/forms/${id}/responses`
+          `https://form-builder-backend-eui0.onrender.com/api/forms/${id}/responses`
         );
         setResponses(response.data.responses);
         setIsLoading(false);

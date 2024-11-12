@@ -17,7 +17,9 @@ export default function FormPage() {
   useEffect(() => {
     const fetchForm = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/forms/${id}`);
+        const response = await axios.get(
+          `https://form-builder-backend-eui0.onrender.com/forms/${id}`
+        );
         setForm(response.data);
       } catch (error) {
         console.error("Error fetching form:", error);
@@ -83,7 +85,7 @@ export default function FormPage() {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/forms/${id}/submit`,
+        `https://form-builder-backend-eui0.onrender.com/api/forms/${id}/submit`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -158,7 +160,7 @@ export default function FormPage() {
                           id={field.label}
                           value={responses[field.label] || ""}
                           onChange={(e) => handleInputChange(e, field.label)}
-                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         />
                       )}
 
@@ -168,7 +170,7 @@ export default function FormPage() {
                           value={responses[field.label] || ""}
                           onChange={(e) => handleInputChange(e, field.label)}
                           rows={4}
-                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         />
                       )}
 
@@ -178,7 +180,7 @@ export default function FormPage() {
                           id={field.label}
                           value={responses[field.label] || ""}
                           onChange={(e) => handleInputChange(e, field.label)}
-                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         />
                       )}
 
@@ -188,7 +190,7 @@ export default function FormPage() {
                           id={field.label}
                           value={responses[field.label] || ""}
                           onChange={(e) => handleInputChange(e, field.label)}
-                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         />
                       )}
 
@@ -209,11 +211,11 @@ export default function FormPage() {
                                 checked={(
                                   responses[field.label] || []
                                 ).includes(option)}
-                                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-all duration-200 ease-in-out cursor-pointer"
                               />
                               <label
                                 htmlFor={`${field.label}-${optionIndex}`}
-                                className="ml-2 block text-sm text-gray-900"
+                                className="ml-3 block text-sm text-gray-700 cursor-pointer select-none"
                               >
                                 {option}
                               </label>
@@ -238,11 +240,11 @@ export default function FormPage() {
                                   handleInputChange(e, field.label)
                                 }
                                 checked={responses[field.label] === option}
-                                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                                className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 transition-all duration-200 ease-in-out cursor-pointer"
                               />
                               <label
                                 htmlFor={`${field.label}-${optionIndex}`}
-                                className="ml-2 block text-sm text-gray-900"
+                                className="ml-3 block text-sm text-gray-700 cursor-pointer select-none"
                               >
                                 {option}
                               </label>
@@ -257,7 +259,7 @@ export default function FormPage() {
                             id={field.label}
                             value={responses[field.label] || ""}
                             onChange={(e) => handleInputChange(e, field.label)}
-                            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md appearance-none"
+                            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md appearance-none bg-white cursor-pointer transition-all duration-200 ease-in-out"
                           >
                             <option value="">Select an option</option>
                             {field.options.map((option, optionIndex) => (
@@ -273,7 +275,7 @@ export default function FormPage() {
                       )}
 
                       {field.type === "file" && (
-                        <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                        <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-blue-500 transition-colors duration-200 ease-in-out">
                           <div className="space-y-1 text-center">
                             <svg
                               className="mx-auto h-12 w-12 text-gray-400"
@@ -324,7 +326,7 @@ export default function FormPage() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 ease-in-out"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

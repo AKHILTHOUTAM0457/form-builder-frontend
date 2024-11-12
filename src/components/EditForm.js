@@ -16,7 +16,9 @@ const EditForm = () => {
   useEffect(() => {
     const fetchForm = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/forms/${id}`);
+        const response = await axios.get(
+          `https://form-builder-backend-eui0.onrender.com/forms/${id}`
+        );
         setForm(response.data);
         setFormData({
           title: response.data.title,
@@ -41,7 +43,10 @@ const EditForm = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.put(`http://localhost:5000/forms/${id}`, formData);
+      await axios.put(
+        `https://form-builder-backend-eui0.onrender.com/forms/${id}`,
+        formData
+      );
       alert("Form updated successfully!");
       navigate(`/form/${id}`); // Redirect to the form page after saving
     } catch (error) {

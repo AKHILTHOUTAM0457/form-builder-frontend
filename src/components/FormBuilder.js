@@ -37,14 +37,14 @@ export default function FormBuilder() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/forms",
+        "https://form-builder-backend-eui0.onrender.com/api/forms",
         formData
       );
 
       if (response.status === 201) {
         const formId = response.data._id;
         const shareResponse = await axios.post(
-          `http://localhost:5000/api/forms/${formId}/share`
+          `https://form-builder-backend-eui0.onrender.com/api/forms/${formId}/share`
         );
         setShareLink(shareResponse.data.formLink);
       }

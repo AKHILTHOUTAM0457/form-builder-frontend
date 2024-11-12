@@ -10,7 +10,9 @@ const FormList = () => {
   useEffect(() => {
     const fetchForms = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/forms");
+        const response = await axios.get(
+          "https://form-builder-backend-eui0.onrender.com/api/forms"
+        );
         setForms(response.data);
         setIsLoading(false);
       } catch (error) {
