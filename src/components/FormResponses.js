@@ -73,17 +73,15 @@ const FormResponses = () => {
             {responses.map((response, index) => (
               <div
                 key={index}
-                className="bg-white overflow-hidden shadow rounded-lg"
+                className="bg-white overflow-hidden shadow rounded-lg cursor-pointer"
+                onClick={() => toggleResponseExpansion(index)}
               >
                 <div className="px-4 py-5 sm:p-6">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-medium text-gray-900">
                       Response {index + 1}
                     </h3>
-                    <button
-                      onClick={() => toggleResponseExpansion(index)}
-                      className="text-blue-600 hover:text-blue-800 focus:outline-none focus:underline transition ease-in-out duration-150"
-                    >
+                    <button className="text-blue-600 hover:text-blue-800 focus:outline-none focus:underline transition ease-in-out duration-150">
                       {expandedResponses.includes(index) ? (
                         <ChevronUp className="w-5 h-5" />
                       ) : (
